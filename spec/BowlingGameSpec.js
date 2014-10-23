@@ -6,18 +6,16 @@ describe("Scores a bowling game", function() {
 		expect(bowlingGame.score()).toEqual(0);
 	});
 	
-//	it("Scans 2 A and gets the price 100", function() {
-//		var checkout = new CheckOut();
-//		checkout.scan("A");
-//		checkout.scan("A");
-//		expect(checkout.total()).toEqual(100);
-//	});
-//	
-//	it("Scans 3 A and gets the price 130", function() {
-//		var checkout = new CheckOut();
-//		checkout.scan("A");
-//		checkout.scan("A");
-//		checkout.scan("A");
-//		expect(checkout.total()).toEqual(130);
-//	});
+	it("Rolling a two pins down returns a score of two", function() {
+		var bowlingGame = new BowlingGame();
+		bowlingGame.roll(2);
+		expect(bowlingGame.score()).toEqual(2);
+	});
+	
+	it("Rolling 2 pins then three returns 5", function() {
+		var bowlingGame = new BowlingGame();
+                bowlingGame.roll(2);
+                bowlingGame.roll(3);
+                expect(bowlingGame.score()).toEqual(5);
+	});
 });
