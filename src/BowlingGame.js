@@ -1,11 +1,11 @@
-function CheckOut() {
+function BowlingGame() {
 }
-CheckOut.prototype.amount = 0;
-CheckOut.prototype.scan = function(item) {
-	this.amount += 50;
-	if (this.amount == 150)
-		this.amount = 130;
-};
-CheckOut.prototype.total = function() {
-	return this.amount;
+
+BowlingGame.prototype.totalScore = 0;
+
+BowlingGame.prototype.roll = function() {
+}
+
+BowlingGame.prototype.score = function() {
+	return this.totalScore;
 };
