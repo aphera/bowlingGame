@@ -73,6 +73,41 @@ describe("A bowling game", function() {
 		expect(bowlingGame.score()).toEqual(300);
 	});
 
+        it("Scores a near perfect game", function() {
+                var bowlingGame = new BowlingGame();
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(0);
+                bowlingGame.roll(10);
+                expect(bowlingGame.score()).toEqual(280);
+        });
+
+	it("Scores a game that ends in a spare", function() {
+		var bowlingGame = new BowlingGame();
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(10);
+                bowlingGame.roll(5);
+                bowlingGame.roll(5);
+                bowlingGame.roll(4);
+		expect(bowlingGame.score()).toEqual(269);
+	});
+
+
 	it("If I knock down 10 pins on my first roll for a frame it's a strike", function() {
 		var frame = new Frame(10);
 		expect(frame.isStrike()).toEqual(true);
