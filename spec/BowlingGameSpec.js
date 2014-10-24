@@ -1,4 +1,4 @@
-describe("Scores a bowling game", function() {
+describe("A bowling game", function() {
 	
 	it("Rolling a gutter ball return a score of zero", function() {
 		var bowlingGame = new BowlingGame();
@@ -38,4 +38,42 @@ describe("Scores a bowling game", function() {
 		bowlingGame.roll(0);
 		expect(bowlingGame.score()).toEqual(16);
 	});
+
+        it("Rolling a strike on first frame scores properly", function() {
+                var bowlingGame = new BowlingGame();
+                bowlingGame.roll(10);
+                bowlingGame.roll(3);
+                bowlingGame.roll(6);
+                expect(bowlingGame.score()).toEqual(28);
+        });
+
+	it("If I knock down 10 pins on my first roll for a frame it's a strike", function() {
+		var frame = new Frame(10);
+		expect(frame.isStrike()).toEqual(true);
+	});
+
+        it("If I knock down 9 pins on my first roll for a frame it's not a strike", function() {
+                var frame = new Frame(9);
+		frame.secondRoll = 1;
+                expect(frame.isStrike()).toEqual(false);
+        });
+
+        it("If I knock down 10 pins over two rolls for a frame it's a spare", function() {
+                var frame = new Frame(5);
+		frame.secondRoll = 5;
+		console.log(frame);
+                expect(frame.isSpare()).toEqual(true);
+        });
+
+        it("If I knock down 10 pins in my first roll of a frame it's not a spare", function() {
+                var frame = new Frame(10);
+                expect(frame.isSpare()).toEqual(false);
+        });
+
+        it("If I knock down 9 pins over two rolls for a frame it's not a spare", function() {
+                var frame = new Frame(5);
+                frame.secondRoll = 4;
+                expect(frame.isSpare()).toEqual(false);
+        });
+
 });
