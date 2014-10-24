@@ -38,21 +38,29 @@ BowlingGame.prototype.roll = function(pinsDown) {
 
 BowlingGame.prototype.score = function() {
 	for (var i = 0; i < this.whichFrameInPlay; i++) {
-		var scoreForFrame = 0;
+		if (i < 10) {
+			var scoreForFrame = 0;
 		
-		scoreForFrame += this.frames[i].firstRoll;
-		scoreForFrame += this.frames[i].secondRoll;
+			scoreForFrame += this.frames[i].firstRoll;
+			scoreForFrame += this.frames[i].secondRoll;
 
-		if (this.frames[i].isSpare()) {
-			scoreForFrame += this.frames[i + 1].firstRoll;
-		}
+			if (this.frames[i].isSpare()) {
+				scoreForFrame += this.frames[i + 1].firstRoll;
+			}
 
-		if (this.frames[i].isStrike()) {
-			scoreForFrame += this.frames[i + 1].firstRoll;
-			scoreForFrame += this.frames[i + 1].secondRoll;
-		}
+			if (this.frames[i].isStrike()) {
+				if (this.frames[i + 1].isStrike()) {
+					scoreForFrame += this.frames[i + 1].firstRoll;
+					scoreForFrame += this.frames[i + 2].firstRoll;
+				} else {
+					scoreForFrame += this.frames[i + 1].firstRoll;
+					scoreForFrame += this.frames[i + 1].secondRoll;
+				}
+			}
 
 		this.totalScore += scoreForFrame;
+
+		}
 	}
 	return this.totalScore;
 }
