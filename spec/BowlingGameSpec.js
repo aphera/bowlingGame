@@ -1,27 +1,27 @@
 describe("A bowling game", function() {
 	
-	it("Rolling a gutter ball return a score of zero", function() {
+	it("should give a score of zero for rolling a gutter ball", function() {
 		var bowlingGame = new BowlingGame();
 		bowlingGame.roll(0)
 		bowlingGame.roll(0);
 		expect(bowlingGame.score()).toEqual(0);
 	});
 	
-	it("Rolling a two pins down returns a score of two", function() {
+	it("should give a score of 2 by knocking down 2 pins", function() {
 		var bowlingGame = new BowlingGame();
 		bowlingGame.roll(2);
 		bowlingGame.roll(0);
 		expect(bowlingGame.score()).toEqual(2);
 	});
 	
-	it("Rolling 2 pins then 3 returns 5", function() {
+	it("should give a score of 5 by knocking down 2 pins then 3", function() {
 		var bowlingGame = new BowlingGame();
 		bowlingGame.roll(2);
 		bowlingGame.roll(3);
 		expect(bowlingGame.score()).toEqual(5);
 	});
 
-        it("Rolling 4 pins then 3 pins then 2 then 1 returns 10", function() {
+        it("should give a score of 10 by knocking down 4 pins then 3 pins then 2 then 1", function() {
                 var bowlingGame = new BowlingGame();
                 bowlingGame.roll(4);
                 bowlingGame.roll(3);
@@ -30,7 +30,7 @@ describe("A bowling game", function() {
                 expect(bowlingGame.score()).toEqual(10);
         });
 
-	it("Rolling a spare on first frame scores properly", function() {
+	it("should score a spare on the first frame", function() {
 		var bowlingGame = new BowlingGame();
 		bowlingGame.roll(5);
 		bowlingGame.roll(5);
@@ -39,7 +39,7 @@ describe("A bowling game", function() {
 		expect(bowlingGame.score()).toEqual(16);
 	});
 
-        it("Rolling a strike on first frame scores properly", function() {
+        it("should score a strike on first frame", function() {
                 var bowlingGame = new BowlingGame();
                 bowlingGame.roll(10);
                 bowlingGame.roll(3);
@@ -47,7 +47,7 @@ describe("A bowling game", function() {
                 expect(bowlingGame.score()).toEqual(28);
         });
 
-	it("Scores two strikes in a row properly", function() {
+	it("should score two strikes in a row properly", function() {
 		var bowlingGame = new BowlingGame();
 		bowlingGame.roll(10);
 		bowlingGame.roll(10);
@@ -56,7 +56,7 @@ describe("A bowling game", function() {
 		expect(bowlingGame.score()).toEqual(42);
 	});
 
-	it("Scores a perfect game", function() {
+	it("should score a perfect game", function() {
 		var bowlingGame = new BowlingGame();
 		bowlingGame.roll(10);
 		bowlingGame.roll(10);
@@ -73,7 +73,7 @@ describe("A bowling game", function() {
 		expect(bowlingGame.score()).toEqual(300);
 	});
 
-        it("Scores a near perfect game", function() {
+        it("should score a near perfect game", function() {
                 var bowlingGame = new BowlingGame();
                 bowlingGame.roll(10);
                 bowlingGame.roll(10);
@@ -90,7 +90,7 @@ describe("A bowling game", function() {
                 expect(bowlingGame.score()).toEqual(280);
         });
 
-	it("Scores a game that ends in a spare", function() {
+	it("should score a game that ends in a spare", function() {
 		var bowlingGame = new BowlingGame();
                 bowlingGame.roll(10);
                 bowlingGame.roll(10);
@@ -108,30 +108,30 @@ describe("A bowling game", function() {
 	});
 
 
-	it("If I knock down 10 pins on my first roll for a frame it's a strike", function() {
+	it("should know that a strike is 10 pins down on the first roll", function() {
 		var frame = new Frame(10);
 		expect(frame.isStrike()).toEqual(true);
 	});
 
-        it("If I knock down 9 pins on my first roll for a frame it's not a strike", function() {
+        it("should know that a strike is not 10 pins knocked down over 2 rolls in one frame", function() {
                 var frame = new Frame(9);
 		frame.secondRoll = 1;
                 expect(frame.isStrike()).toEqual(false);
         });
 
-        it("If I knock down 10 pins over two rolls for a frame it's a spare", function() {
+        it("should know that a spare is 10 pins knocked down over 2 rolls in one frame", function() {
                 var frame = new Frame(5);
 		frame.secondRoll = 5;
 		console.log(frame);
                 expect(frame.isSpare()).toEqual(true);
         });
 
-        it("If I knock down 10 pins in my first roll of a frame it's not a spare", function() {
+        it("should know that if I knock down 10 pins in my first roll of a frame it's not a spare", function() {
                 var frame = new Frame(10);
                 expect(frame.isSpare()).toEqual(false);
         });
 
-        it("If I knock down 9 pins over two rolls for a frame it's not a spare", function() {
+        it("should know that if I knock down 9 pins over two rolls for a frame it's not a spare", function() {
                 var frame = new Frame(5);
                 frame.secondRoll = 4;
                 expect(frame.isSpare()).toEqual(false);
