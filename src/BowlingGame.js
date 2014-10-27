@@ -6,7 +6,7 @@ BowlingGame.prototype.frames = [];
 BowlingGame.prototype.firstRollInFrame = true;
 BowlingGame.prototype.whichFrameInPlay = 0;
 
-var frame = function (firstRoll) {
+BowlingGame.prototype.frame = function (firstRoll) {
 	var firstRoll = firstRoll;
 	var secondRoll = 0;
 
@@ -36,7 +36,7 @@ var frame = function (firstRoll) {
 
 BowlingGame.prototype.roll = function(pinsDown) {
 	if (this.firstRollInFrame) {
-		this.frames[this.whichFrameInPlay] = frame(pinsDown);
+		this.frames[this.whichFrameInPlay] = this.frame(pinsDown);
 		if (this.frames[this.whichFrameInPlay].isStrike()) {
 			this.whichFrameInPlay++;
 		} else {

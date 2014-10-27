@@ -109,30 +109,29 @@ describe("A bowling game", function() {
 
 
 	it("should know that a strike is 10 pins down on the first roll", function() {
-		var frame = frame(10);
-		console.log(frame);
+		var frame = new BowlingGame().frame(10);
 		expect(frame.isStrike()).toEqual(true);
 	});
 
         it("should know that a strike is not 10 pins knocked down over 2 rolls in one frame", function() {
-                var frame = frame(9);
+                var frame = new BowlingGame().frame(9);
 		frame.setSecondRoll(1);
                 expect(frame.isStrike()).toEqual(false);
         });
 
         it("should know that a spare is 10 pins knocked down over 2 rolls in one frame", function() {
-                var frame = frame(5);
+                var frame = new BowlingGame().frame(5);
 		frame.setSecondRoll(5);
                 expect(frame.isSpare()).toEqual(true);
         });
 
         it("should know that if I knock down 10 pins in my first roll of a frame it's not a spare", function() {
-                var frame = frame(10);
+                var frame = new BowlingGame().frame(10);
                 expect(frame.isSpare()).toEqual(false);
         });
 
         it("should know that if I knock down 9 pins over two rolls for a frame it's not a spare", function() {
-                var frame = frame(5);
+                var frame = new BowlingGame().frame(5);
                 frame.setSecondRoll(4);
                 expect(frame.isSpare()).toEqual(false);
         });
