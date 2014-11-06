@@ -1,4 +1,5 @@
 var frame = function (spec) {
+    'use strict';
     var firstRoll = spec.firstRoll, secondRoll = 0;
 
     return {
