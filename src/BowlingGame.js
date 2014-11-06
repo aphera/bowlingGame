@@ -1,39 +1,11 @@
 var bowlingGame = function () {
     'use strict';
-    var totalScore = 0, frames = [],
-        firstRollInFrame = true, whichFrameInPlay = 0;
+    var frames = [], firstRollInFrame = true, whichFrameInPlay = 0;
 
     return {
-        frame: function (spec) {
-            var firstRoll = spec.firstRoll, secondRoll = 0;
-
-            return {
-                setSecondRoll: function (roll) {
-                    secondRoll = roll;
-                },
-
-                getFirstRoll: function () {
-                    return firstRoll;
-                },
-
-                getPinsForFrame: function () {
-                    return firstRoll + secondRoll;
-                },
-
-                isStrike: function () {
-                    return firstRoll === 10;
-                },
-
-                isSpare: function () {
-                    var tenPinsDown = firstRoll + secondRoll === 10;
-                    return tenPinsDown && !this.isStrike();
-                }
-            };
-        },
-
         roll: function (pinsDown) {
             if (firstRollInFrame) {
-                frames[whichFrameInPlay] = this.frame({firstRoll: pinsDown});
+                frames[whichFrameInPlay] = frame({firstRoll: pinsDown});
                 if (frames[whichFrameInPlay].isStrike()) {
                     whichFrameInPlay += 1;
                 } else {
@@ -47,7 +19,7 @@ var bowlingGame = function () {
         },
 
         score: function () {
-            var i, scoreForFrame;
+            var i, scoreForFrame, totalScore = 0;
 
             for (i = 0; i < whichFrameInPlay; i += 1) {
                 if (i < 10) {
